@@ -1,0 +1,29 @@
+{
+  "name": "carolina-panthers-records",
+  "version": "1.0.0",
+  "description": "An Alexa skill that provides Carolina Panthers records",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gfcannon12/carolina-panthers-records"
+  },
+  "keywords": [
+    "Panthers",
+    "Alexa",
+    "Carolina"
+  ],
+  "author": "Gray Cannon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gfcannon12/carolina-panthers-records/issues"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.117.0"
+  }
+}

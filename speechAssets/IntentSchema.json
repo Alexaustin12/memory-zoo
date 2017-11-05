@@ -1,0 +1,63 @@
+{
+  "intents": [
+    {
+      "intent": "AMAZON.PreviousIntent"
+    },
+    {
+      "intent": "AMAZON.NextIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollUpIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollLeftIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollDownIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollRightIntent"
+    },
+    {
+      "intent": "AMAZON.PageUpIntent"
+    },
+    {
+      "intent": "AMAZON.PageDownIntent"
+    },
+    {
+      "intent": "AMAZON.MoreIntent"
+    },
+    {
+      "intent": "AMAZON.NavigateSettingsIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+		},
+		{
+      "intent": "AMAZON.YesIntent"
+		},
+		{
+      "intent": "AMAZON.NoIntent"
+		},
+		{
+      "intent": "AMAZON.StartOverIntent"
+		},
+		{
+			"intent": "GuessIntent",
+			"slots": [ 
+				{
+					"name" : "animal",
+					"type": "LIST_OF_ANIMALS"
+				}
+			]
+		}
+  ]
+}
+
+// Add start game intent
