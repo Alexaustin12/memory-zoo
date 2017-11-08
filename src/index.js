@@ -114,32 +114,20 @@ function getWelcomeResponse(callback) {
 }
 
 function handleGuessRequest(intent, session, callback) { //handling the users response. it could be the question answer or i dont know or cancel, etc.
-  
-  let speechOutput;
-  let shouldEndSession = true;
-  
-
-  // intent.slots.animal.value
-
-    speechOutput = "";
-
-    speechOutput = "Sorry, I did not understand your request.  I know the records for passing, rushing, receiving, sacks, and interceptions.  Please try another question or say 'Help'";
-    shouldEndSession = false;
-
+  var speechOutput = `It's a ${intent.slots.animal.value}`;
+  var shouldEndSession = false;
   var sessionAttributes = {};
   var repromptText = "";
-          callback(sessionAttributes,
-              buildSpeechletResponse(CARD_TITLE, speechOutput, repromptText, shouldEndSession));
-  
+  callback(sessionAttributes,
+      buildSpeechletResponse(CARD_TITLE, speechOutput, repromptText, shouldEndSession));
 }
 
 function handleEndRequest(intent, session, callback) { //handling the users response. it could be the question answer or i dont know or cancel, etc.
   var speechOutput = "Goodbye";
   var sessionAttributes = {};
   var repromptText = "";
-          callback(sessionAttributes,
-              buildSpeechletResponse(CARD_TITLE, speechOutput, repromptText, true));
-  
+    callback(sessionAttributes,
+        buildSpeechletResponse(CARD_TITLE, speechOutput, repromptText, true));
 }
 
 function handleGetHelpRequest(intent, session, callback) {

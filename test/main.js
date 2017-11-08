@@ -68,7 +68,7 @@ sts.assumeRole({
           }
         };        
         var lambda = require('../src/index.js');
-        var event = require('./input.json');
+        var event = require('./pigInput.json');
         lambda.handler(event, context());
     }
 });
