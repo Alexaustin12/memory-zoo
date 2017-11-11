@@ -15,7 +15,7 @@
 // the role must have a trusted policy with
 // "lambda.amazonaws.com" and "arn:aws:iam::<YOUR ACCOUNT ID>:user/<YOUR USER>"
 
-var roleArn = 'arn:aws:iam::162330001394:role/lambda_basic_execution';
+var roleArn = process.env.ROLE_ARN;
 var region = 'us-east-1';
 /* DO NOT MAKE CHANGE BELOW THIS */
 var AWS = require('aws-sdk');
@@ -68,7 +68,7 @@ sts.assumeRole({
           }
         };        
         var lambda = require('../src/index.js');
-        var event = require('./pigInput.json');
+        var event = require('./launchInput.json');
         lambda.handler(event, context());
     }
 });

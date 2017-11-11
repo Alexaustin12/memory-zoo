@@ -14,9 +14,7 @@
             "runtimeArgs": [
                 "--nolazy"
             ],
-            "env": {
-                "NODE_ENV": "development"
-            },
+            "envFile": "${workspaceRoot}/.env",
             "externalConsole": false,
             "sourceMaps": false,
             "outDir": null
