@@ -5,7 +5,7 @@
     "application": {
       "applicationId": "amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62"
     },
-    "attributes": {},
+    "attributes": {"level": "1", "zoo": ["Tiger"]},
     "user": {
       "userId": "amzn1.ask.account.AFPGBDVAVDU6F6YBDMXUNXQTAVXPVDDF74MH7KAFUYYSUWYSYMBBT53Y7JJ7B2ANAZDEFUVF47U4ERP56LU4HQ73BSM224GSAVUQIFFPOFLD3PE2KKTADILTU2ME4SWSJRZ64VV7K2IDFP4EQPGD6L4LKHSDL5VYRNOENI72CHS4DGKQLXFE52I2JPOJAYQFKIF262BE23UYCVY"
     }
@@ -16,8 +16,8 @@
     "intent": {
       "name": "GuessIntent",
       "slots": {
-        "animal": {
-          "name": "animal",
+        "animal_one": {
+          "name": "animal_one",
           "value": "pig"
         }
       }

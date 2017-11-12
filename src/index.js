@@ -14,10 +14,14 @@ exports.handler = function(event, context, callback){
   alexa.execute()
 };
 
+// Module vars
 const animals = ['Bear', 'Elephant', 'Giraffe', 'Hippo', 'Monkey', 'Panda', 'Penguin', 'Tiger', 'Zebra'];
+let levelAnimals = [];
+let levelArr = [];
+
+// Functions
 const randAnimal = () => animals[Math.floor(Math.random() * animals.length)];
 
-const levelAnimals = [];
 const getAnimals = (level) => {
   let i;
   for (i = 0; i < level; i++) {
@@ -26,7 +30,6 @@ const getAnimals = (level) => {
 }
 
 const createLevel = (level) => {
-  const levelArr =[];
   getAnimals(level);
   let i;
   for (i = 0; i < levelAnimals.length; i++) {
@@ -51,8 +54,11 @@ const createLevel = (level) => {
 const handlers = {
   'LaunchRequest': function () {
     const builder = new Alexa.templateBuilders.ListTemplate2Builder();
-    this.attributes['level'] = 1;
+    this.attributes.level = 1;
+    levelAnimals = [];
+    levelArr = [];
     const listItems = createLevel(this.attributes['level']);
+    this.attributes.zoo = levelAnimals;
 
     const template = builder.setTitle('Memory Zoo')
                             .setToken('listTemplate')
@@ -60,7 +66,6 @@ const handlers = {
                             .setListItems(listItems)
                             .build();
     
-    this.attributes['level']++;
     this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Splashing_Around_edit.mp3' />Welcome to the Memory Zoo!  Can you remember all the animals you see?  Say ready when you're ready for level 1.")
       .listen("Come on. Let's play. Say ready when you're ready")
       .renderTemplate(template);
@@ -79,7 +84,28 @@ const handlers = {
   },
   'GuessIntent': function () {
     const intentObj = this.event.request.intent;
-    const speechOutput = `Dude, it's a ${intentObj.slots.animal.value}`;
+    const animalSlots = ['animal_one', 'animal_two'];
+    const userGuess = [];
+    let key;
+    for (key in Object.keys(intentObj.slots)) {
+      userGuess.push(intentObj.slots[animalSlots[key]].value)
+    }
+    let userCorrect = false;
+    const lowercaseZoo = this.attributes.zoo.map(x => x.toLowerCase()); 
+    let i;
+    for (i in lowercaseZoo) {
+      userCorrect = true;
+      if (userGuess[i] != lowercaseZoo[i]) {
+          userCorrect = false;
+          break;
+      }
+    }
+    let speechOutput;
+    if (userCorrect) {
+      this.attributes.level++;
+      speechOutput = "Correct!";
+    } else speechOutput = "Wrong!";
+    
     this.emit(':tell', speechOutput);
   },
   'Unhandled': function () {

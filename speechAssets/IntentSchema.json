@@ -38,29 +38,31 @@
     },
     {
       "intent": "AMAZON.CancelIntent"
-		},
-		{
+    },
+    {
       "intent": "AMAZON.YesIntent"
-		},
-		{
+    },
+    {
       "intent": "AMAZON.NoIntent"
-		},
-		{
+    },
+    {
       "intent": "AMAZON.StartOverIntent"
     },
     {
       "intent": "ReadyIntent"
-		},
-		{
-			"intent": "GuessIntent",
-			"slots": [ 
-				{
-					"name" : "animal",
-					"type": "LIST_OF_ANIMALS"
-				}
-			]
-		}
+    },
+    {
+      "slots": [
+        {
+          "name": "animal_one",
+          "type": "LIST_OF_ANIMALS"
+        },
+        {
+          "name": "animal_two",
+          "type": "LIST_OF_ANIMALS"
+        }
+      ],
+      "intent": "GuessIntent"
+    }
   ]
 }
-
-// Add start game intent
