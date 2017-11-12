@@ -1,1 +1,4 @@
-GuessIntent <animal>
+GuessIntent {animal}
+ReadyIntent ready
+ReadyIntent I'm ready
+ReadyIntent Let's start
