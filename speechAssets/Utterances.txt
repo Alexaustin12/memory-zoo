@@ -1,5 +1,17 @@
 GuessIntent {animal_one}
 GuessIntent {animal_one} {animal_two}
+GuessIntent {animal_one} {animal_two} {animal_three}
+GuessIntent {animal_one} {animal_two} {animal_three} {animal_four}
+GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five}
+GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five} {animal_six}
+GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five} {animal_six} {animal_seven}
+GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five} {animal_six} {animal_seven} {animal_eight}
+GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five} {animal_six} {animal_seven} {animal_eight} {animal_nine}
+GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five} {animal_six} {animal_seven} {animal_eight} {animal_ten}
+GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five} {animal_six} {animal_seven} {animal_eight} {animal_ten} {animal_eleven}
+GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five} {animal_six} {animal_seven} {animal_eight} {animal_ten} {animal_eleven} {animal_twelve}
 ReadyIntent ready
 ReadyIntent I'm ready
 ReadyIntent Let's start
+ReadyIntent zoo
+ReadyIntent zoo time

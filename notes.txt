@@ -30,5 +30,13 @@ On your trip to the Memory Zoo, you will see many different animals!
 After seeing the animals, you must recite the name of each animal you saw in the correct order.
 If you are right, you will continue on to the next level.  If you are wrong, your trip ends.  Would you like to play?
 
+FEATURES
+fail music, fail image
+different music for waiting period
+Tell user to swipe then say echo ready if level >= 3
 You need to account for non-display devices (and the simulator)
-Probably a good idea to have a START_MODE and GUESS_MODE
+maybe - have a START_MODE and GUESS_MODE
+
+BUGS
+Standard Alexa is interupting! "ready" "zoo time"
+Sometimes level is not advancing

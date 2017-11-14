@@ -60,6 +60,46 @@
         {
           "name": "animal_two",
           "type": "LIST_OF_ANIMALS"
+        },
+        {
+          "name": "animal_three",
+          "type": "LIST_OF_ANIMALS"
+        },
+        {
+          "name": "animal_four",
+          "type": "LIST_OF_ANIMALS"
+        },
+        {
+          "name": "animal_five",
+          "type": "LIST_OF_ANIMALS"
+        },
+        {
+          "name": "animal_six",
+          "type": "LIST_OF_ANIMALS"
+        },
+        {
+          "name": "animal_seven",
+          "type": "LIST_OF_ANIMALS"
+        },
+        {
+          "name": "animal_eight",
+          "type": "LIST_OF_ANIMALS"
+        },
+        {
+          "name": "animal_nine",
+          "type": "LIST_OF_ANIMALS"
+        },
+        {
+          "name": "animal_ten",
+          "type": "LIST_OF_ANIMALS"
+        },
+        {
+          "name": "animal_eleven",
+          "type": "LIST_OF_ANIMALS"
+        },
+        {
+          "name": "animal_twelve",
+          "type": "LIST_OF_ANIMALS"
         }
       ],
       "intent": "GuessIntent"

@@ -1,7 +1,7 @@
 {
-  "name": "carolina-panthers-records",
+  "name": "memory-zoo",
   "version": "1.0.0",
-  "description": "An Alexa skill that provides Carolina Panthers records",
+  "description": "This skill is a memory game for children optimized for the Echo Show.",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,17 +11,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gfcannon12/carolina-panthers-records"
+    "url": "https://github.com/Alexaustin12/memory-zoo"
   },
   "keywords": [
-    "Panthers",
-    "Alexa",
-    "Carolina"
+    "Kids",
+    "Children",
+    "Echo"
   ],
-  "author": "Gray Cannon",
+  "author": "TarDevelopment",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gfcannon12/carolina-panthers-records/issues"
+    "url": "https://github.com/Alexaustin12/memory-zoo/issues"
   },
   "dependencies": {
     "aws-sdk": "^2.117.0"

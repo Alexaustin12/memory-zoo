@@ -71,8 +71,8 @@ sts.assumeRole({
 
         //var event = require('./launchInput.json');
         //var event = require('./pigInput.json');
-        var event = require('./tigerInput.json');
-        //var event = require('./giraffeElephantInput.json');
+        //var event = require('./tigerInput.json');
+        var event = require('./giraffeElephantInput.json');
         
         lambda.handler(event, context());
     }
