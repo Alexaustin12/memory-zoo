@@ -34,9 +34,11 @@ FEATURES
 fail music, fail image
 different music for waiting period
 Tell user to swipe then say echo ready if level >= 3
+    Or, could you make the images smaller or 2x2 so more fit on the screen? I assume no?
 You need to account for non-display devices (and the simulator)
 maybe - have a START_MODE and GUESS_MODE
 
 BUGS
 Standard Alexa is interupting! "ready" "zoo time"
 Sometimes level is not advancing
+I got two pandas - bear, elephant, panda, panda - probably random generator happended to get it twice?
