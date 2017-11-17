@@ -41,8 +41,5 @@ maybe - have a START_MODE and GUESS_MODE
 BUGS
 Standard Alexa is interupting! "ready" "zoo time"
 Sometimes level is not advancing
-<<<<<<< HEAD
 Letters cut off
-=======
 I got two pandas - bear, elephant, panda, panda - probably random generator happended to get it twice?
->>>>>>> e99edb96b08bda1fb541984f572f7841fd788e7b
