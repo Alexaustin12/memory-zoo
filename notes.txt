@@ -40,3 +40,4 @@ maybe - have a START_MODE and GUESS_MODE
 BUGS
 Standard Alexa is interupting! "ready" "zoo time"
 Sometimes level is not advancing
+Letters cut off
