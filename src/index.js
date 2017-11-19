@@ -91,7 +91,7 @@ const handlers = {
                             .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Stripes2.jpg'))
                             .build();
 
-    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Splashing_Around_edit.mp3' />Now tell me the animals you have seen.")
+    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
                  .listen("Which animals did you see?")
                  .renderTemplate(template);
     this.emit(':responseReady');  
