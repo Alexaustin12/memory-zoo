@@ -20,7 +20,7 @@ const animals = ['Bear', 'Elephant', 'Giraffe', 'Hippo', 'Monkey', 'Panda', 'Pen
 let levelAnimals = [];
 let levelArr = [];
 let lowercaseZoo = [];
-let gameLevel;
+let gameLevel, startTime, endTime;
 const speechCons = ['bada bing bada boom', 'bazinga', 'bingo', 'booya', 'bravo', 'cha ching',
                         'cowabunga', 'dynomite', 'giddy up', 'hurray', 'huzzah', 'kazaam', 'ooh la la',
                         'righto', 'ta da', 'vroom', 'wahoo', 'way to go', 'well done', 'woo hoo', 'wowza',
@@ -67,6 +67,7 @@ const randSpeechCon = () => speechCons[Math.floor(Math.random() * speechCons.len
 // Request handlers
 const handlers = {
   'LaunchRequest': function () {
+    startTime = new Date();
     gameLevel = this.attributes.level = 1;
     let levelObj = createLevel(gameLevel);
     let listItems = levelObj.levelArr;
@@ -128,7 +129,7 @@ const handlers = {
     console.log('userGuess', userGuess);
     console.log('lowercaseZoo', lowercaseZoo);    
 
-    if (userCorrect) {
+    if (userCorrect && gameLevel !=8) {
       gameLevel++;
       let levelObj = createLevel(gameLevel);
       console.log('Logging level after user is correct', gameLevel);
@@ -136,8 +137,8 @@ const handlers = {
       this.attributes.zoo = levelObj.levelAnimals;
       lowercaseZoo = this.attributes.zoo.map(x => x.toLowerCase());       
       console.log('this.attributes.zoo', this.attributes.zoo);
-      const builder = new Alexa.templateBuilders.ListTemplate2Builder();      
-  
+      const builder = new Alexa.templateBuilders.ListTemplate2Builder();
+
       const template = builder.setTitle('Memory Zoo')
                               .setToken('listTemplate')
                               .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Savannah.jpg'))
@@ -145,6 +146,8 @@ const handlers = {
                               .build();
       
       let instructions;
+
+      // At level 3, you need to swipe to see all the animals      
       if (gameLevel == 3) {
         instructions = "You've made it to level 3. You may need to swipe to see all the animals.  Say Alexa, zoo time when you're ready. "
       } else {
@@ -155,7 +158,27 @@ const handlers = {
                            <say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/> ${instructions}`)
         .listen("Come on. Let's play. Say zoo time when you're ready")
         .renderTemplate(template);
-      this.emit(':responseReady');  
+      this.emit(':responseReady');
+    
+    // After correctly completing level 8, you are a champion
+    } else if (userCorrect && gameLevel == 8) {
+      endTime = new Date();
+      let gameTime = endTime - startTime;
+      gameTime = gameTime / 1000;
+      const gameMin = Math.floor(gameTime / 60);
+      const gameSec = Math.round(gameTime) % 60;
+      const builder = new Alexa.templateBuilders.BodyTemplate1Builder();
+      const template = builder.setToken('bodyTemplateChamp')
+                              .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/fireworks.jpg'))
+                              .setTextContent(TextUtils.makeRichText(`<b>You are a champion!<br/>Memory Zoo completed in ${gameMin} minutes and ${gameSec} seconds</b>`))
+                              .build();
+
+      this.response.speak(`<say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/>
+                           <audio src='https://s3.amazonaws.com/memory-zoo/audio/Classique_edit.mp3' />`)
+                   .renderTemplate(template);
+      this.emit(':responseReady'); 
+
+    // Display and output when user is incorrect
     } else {
       const builder = new Alexa.templateBuilders.BodyTemplate1Builder();
       const template = builder.setToken('bodyTemplate1')

@@ -84,22 +84,6 @@
         {
           "name": "animal_eight",
           "type": "LIST_OF_ANIMALS"
-        },
-        {
-          "name": "animal_nine",
-          "type": "LIST_OF_ANIMALS"
-        },
-        {
-          "name": "animal_ten",
-          "type": "LIST_OF_ANIMALS"
-        },
-        {
-          "name": "animal_eleven",
-          "type": "LIST_OF_ANIMALS"
-        },
-        {
-          "name": "animal_twelve",
-          "type": "LIST_OF_ANIMALS"
         }
       ],
       "intent": "GuessIntent"
