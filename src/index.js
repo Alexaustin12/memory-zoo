@@ -27,13 +27,17 @@ const speechCons = ['bada bing bada boom', 'bazinga', 'bingo', 'booya', 'bravo',
                         'yay', 'yippee', 'yowza'];
 
 // Functions
-const randAnimal = () => animals[Math.floor(Math.random() * animals.length)];
+let randAnimal = (animalArr) => animalArr[Math.floor(Math.random() * animalArr.length)];
 
 const getAnimals = (level) => {
+  let creatures = animals.slice(0);
   let i;
   for (i = 0; i < level; i++) {
-    levelAnimals.push(randAnimal());
+    let currentAnimal = randAnimal(creatures);
+    levelAnimals.push(currentAnimal);
+    creatures.splice(creatures.indexOf(currentAnimal), 1);
   }
+
   return levelAnimals; 
 }
 
@@ -79,6 +83,7 @@ const handlers = {
                             .setToken('listTemplate')
                             .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Savannah.jpg'))
                             .setListItems(listItems)
+                            .setBackButtonBehavior('HIDDEN')
                             .build();
     
     this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Splashing_Around_edit.mp3' />Welcome to the Memory Zoo!  Can you remember all the animals you see?  Say zoo time when you're ready for level 1.")
@@ -90,6 +95,7 @@ const handlers = {
     const builder = new Alexa.templateBuilders.BodyTemplate6Builder();
     const template = builder.setToken('bodyTemplate6')
                             .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Stripes2.jpg'))
+                            .setBackButtonBehavior('HIDDEN')                            
                             .build();
 
     this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
@@ -143,6 +149,7 @@ const handlers = {
                               .setToken('listTemplate')
                               .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Savannah.jpg'))
                               .setListItems(listItems)
+                              .setBackButtonBehavior('HIDDEN')                              
                               .build();
       
       let instructions;
@@ -171,6 +178,7 @@ const handlers = {
       const template = builder.setToken('bodyTemplateChamp')
                               .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/fireworks.jpg'))
                               .setTextContent(TextUtils.makeRichText(`<b>You are a champion!<br/>Memory Zoo completed in ${gameMin} minutes and ${gameSec} seconds</b>`))
+                              .setBackButtonBehavior('HIDDEN')                              
                               .build();
 
       this.response.speak(`<say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/>
@@ -184,6 +192,7 @@ const handlers = {
       const template = builder.setToken('bodyTemplate1')
                               .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/gameover.jpg'))
                               .setTextContent(TextUtils.makeRichText(`<b>Great job! You reached level ${gameLevel}</b>`))
+                              .setBackButtonBehavior('HIDDEN')                              
                               .build();
 
       this.response.speak(`<audio src='https://s3.amazonaws.com/memory-zoo/audio/Skip_With_My_Creole_Band_Sting_edit.mp3' />

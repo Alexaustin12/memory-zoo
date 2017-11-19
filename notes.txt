@@ -30,18 +30,15 @@ On your trip to the Memory Zoo, you will see many different animals!
 After seeing the animals, you must recite the name of each animal you saw in the correct order.
 If you are right, you will continue on to the next level.  If you are wrong, your trip ends.  Would you like to play?
 
+BUGS
+Standard Alexa is interupting! "ready" "zoo time"
+Letters cut off
+
 FEATURES
-create end game after level 8 - monkey hanging - classique.mp3
-    reduce slots to 8
-    display time of game
-different music for waiting period - diff song for each level
 Account for non-display devices (and the simulator) - do we have to?
 READY_MODE and GUESS_MODE - cannot guess from READY_MODE
 say something when you poke an animal
 remove back button when user is guessing
 
-BUGS
-Standard Alexa is interupting! "ready" "zoo time"
-Sometimes level is not advancing - seems fixed 11/19
-Letters cut off
-level 9 - last animal undefined?, level 10 - second to last animal undefined
+ENHANCEMENTS
+diff song for each level? - now that we have different wait guess not sure if needed
