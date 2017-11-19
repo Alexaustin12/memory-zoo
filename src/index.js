@@ -19,6 +19,7 @@ const animals = ['Bear', 'Elephant', 'Giraffe', 'Hippo', 'Monkey', 'Panda', 'Pen
 let levelAnimals = [];
 let levelArr = [];
 let lowercaseZoo = [];
+let gameLevel;
 const speechCons = ['bada bing bada boom', 'bazinga', 'bingo', 'booya', 'bravo', 'cha ching',
                         'cowabunga', 'dynomite', 'giddy up', 'hurray', 'huzzah', 'kazaam', 'ooh la la',
                         'righto', 'ta da', 'vroom', 'wahoo', 'way to go', 'well done', 'woo hoo', 'wowza',
@@ -65,8 +66,8 @@ const randSpeechCon = () => speechCons[Math.floor(Math.random() * speechCons.len
 // Request handlers
 const handlers = {
   'LaunchRequest': function () {
-    this.attributes.level = 1;
-    let levelObj = createLevel(this.attributes.level);
+    gameLevel = this.attributes.level = 1;
+    let levelObj = createLevel(gameLevel);
     let listItems = levelObj.levelArr;
     this.attributes.zoo = levelObj.levelAnimals;
     lowercaseZoo = this.attributes.zoo.map(x => x.toLowerCase());    
@@ -100,6 +101,16 @@ const handlers = {
     const animalSlots = ['animal_one', 'animal_two', 'animal_three', 'animal_four', 'animal_five', 'animal_six', 'animal_seven',
                          'animal_eight', 'animal_nine', 'animal_ten', 'animal_eleven', 'animal_twelve'];
     const userGuess = [];
+
+    // When testing, lowercaseZoo will be an empty array, this populates it
+    if (lowercaseZoo.length == 0) {
+      lowercaseZoo = this.attributes.zoo.map(x => x.toLowerCase());
+    }
+    // When testing, gameLevel will be blank, this sets it
+    if (!gameLevel) {
+      gameLevel = this.attributes.level;
+    }
+
     let key;
     for (key in lowercaseZoo) {
       userGuess.push(intentObj.slots[animalSlots[key]].value);
@@ -117,8 +128,9 @@ const handlers = {
     console.log('lowercaseZoo', lowercaseZoo);    
 
     if (userCorrect) {
-      this.attributes.level++;
-      let levelObj = createLevel(this.attributes.level);
+      gameLevel++;
+      let levelObj = createLevel(gameLevel);
+      console.log('Logging level after user is correct', gameLevel);
       let listItems = levelObj.levelArr;
       this.attributes.zoo = levelObj.levelAnimals;
       lowercaseZoo = this.attributes.zoo.map(x => x.toLowerCase());       
@@ -131,9 +143,15 @@ const handlers = {
                               .setListItems(listItems)
                               .build();
       
+      let instructions;
+      if (gameLevel == 3) {
+        instructions = "You've made it to level 3. You may need to swipe to see all the animals.  Say Alexa, zoo time when you're ready. "
+      } else {
+        instructions = `Say zoo time when you're ready for level ${gameLevel}`;        
+      }
+
       this.response.speak(`<audio src='https://s3.amazonaws.com/memory-zoo/audio/Rollanddrop_Sting_edit.mp3' />
-                           <say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/>
-                           Say zoo time when you're ready for level ${this.attributes.level}`)
+                           <say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/> ${instructions}`)
         .listen("Come on. Let's play. Say zoo time when you're ready")
         .renderTemplate(template);
       this.emit(':responseReady');  

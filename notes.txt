@@ -31,15 +31,19 @@ After seeing the animals, you must recite the name of each animal you saw in the
 If you are right, you will continue on to the next level.  If you are wrong, your trip ends.  Would you like to play?
 
 FEATURES
-fail music, fail image
-different music for waiting period
-Tell user to swipe then say echo ready if level >= 3
-    Or, could you make the images smaller or 2x2 so more fit on the screen? I assume no?
-You need to account for non-display devices (and the simulator)
-maybe - have a START_MODE and GUESS_MODE
+fail music, fail image - monkey hanging
+    display level reached, ask to play again
+create end game after level 8 - monkey hanging - classique.mp3
+    reduce slots to 8
+    display time of game
+different music for waiting period - diff song for each level
+Account for non-display devices (and the simulator) - do we have to?
+READY_MODE and GUESS_MODE - cannot guess from READY_MODE
+say something when you poke an animal
+remove back button when user is guessing
 
 BUGS
 Standard Alexa is interupting! "ready" "zoo time"
-Sometimes level is not advancing
+Sometimes level is not advancing - seems fixed 11/19
 Letters cut off
-I got two pandas - bear, elephant, panda, panda - probably random generator happended to get it twice?
+level 9 - last animal undefined?, level 10 - second to last animal undefined
