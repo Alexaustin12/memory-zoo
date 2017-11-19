@@ -31,8 +31,6 @@ After seeing the animals, you must recite the name of each animal you saw in the
 If you are right, you will continue on to the next level.  If you are wrong, your trip ends.  Would you like to play?
 
 FEATURES
-fail music, fail image - monkey hanging
-    display level reached, ask to play again
 create end game after level 8 - monkey hanging - classique.mp3
     reduce slots to 8
     display time of game

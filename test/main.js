@@ -70,9 +70,9 @@ sts.assumeRole({
         var lambda = require('../src/index.js');
 
         //var event = require('./launchInput.json');
-        //var event = require('./pigInput.json');
+        var event = require('./pigInput.json');
         //var event = require('./tigerInput.json');
-        var event = require('./giraffeElephantInput.json');
+        //var event = require('./giraffeElephantInput.json');
         
         lambda.handler(event, context());
     }

@@ -6,6 +6,7 @@ A memory game Alexa Skill optimized for Echo Show
 
 const Alexa = require('alexa-sdk');
 const ImageUtils = require('alexa-sdk').utils.ImageUtils;
+const TextUtils = require('alexa-sdk').utils.TextUtils;
 
 exports.handler = function(event, context, callback){
   const alexa = Alexa.handler(event, context, callback);
@@ -86,7 +87,7 @@ const handlers = {
   },
   'ReadyIntent': function () {
     const builder = new Alexa.templateBuilders.BodyTemplate6Builder();
-    const template = builder.setToken('bodyTemplate')
+    const template = builder.setToken('bodyTemplate6')
                             .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Stripes2.jpg'))
                             .build();
 
@@ -156,8 +157,17 @@ const handlers = {
         .renderTemplate(template);
       this.emit(':responseReady');  
     } else {
-      const speechOutput = "Wrong!";
-      this.emit(':tell', speechOutput);
+      const builder = new Alexa.templateBuilders.BodyTemplate1Builder();
+      const template = builder.setToken('bodyTemplate1')
+                              .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/gameover.jpg'))
+                              .setTextContent(TextUtils.makeRichText(`<b>Great job! You reached level ${gameLevel}</b>`))
+                              .build();
+
+      this.response.speak(`<audio src='https://s3.amazonaws.com/memory-zoo/audio/Skip_With_My_Creole_Band_Sting_edit.mp3' />
+                          <say-as interpret-as="interjection">aw man</say-as><break time="1s"/> Thanks for hanging out at the memory zoo. 
+                          Say Alexa play memory zoo to play again.`)
+        .renderTemplate(template);
+      this.emit(':responseReady');  
     }
   },
   'Unhandled': function () {
