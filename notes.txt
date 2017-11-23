@@ -35,10 +35,13 @@ Standard Alexa is interupting! "ready" "zoo time"
 Letters cut off
 
 FEATURES
-Account for non-display devices (and the simulator) - do we have to?
 READY_MODE and GUESS_MODE - cannot guess from READY_MODE
 say something when you poke an animal
-remove back button when user is guessing
+Change unhandled output
+Account for non-display devices (and the simulator) - do we have to?
 
 ENHANCEMENTS
 diff song for each level? - now that we have different wait guess not sure if needed
+hint to say zoo time
+video on start?
+video on guess screen?

@@ -156,7 +156,7 @@ const handlers = {
 
       // At level 3, you need to swipe to see all the animals      
       if (gameLevel == 3) {
-        instructions = "You've made it to level 3. You may need to swipe to see all the animals.  Say Alexa, zoo time when you're ready. "
+        instructions = "You've made it to level 3. You may need to swipe to see all the animals.  Say zoo time when you're ready. "
       } else {
         instructions = `Say zoo time when you're ready for level ${gameLevel}`;        
       }
@@ -164,7 +164,8 @@ const handlers = {
       this.response.speak(`<audio src='https://s3.amazonaws.com/memory-zoo/audio/Rollanddrop_Sting_edit.mp3' />
                            <say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/> ${instructions}`)
         .listen("Come on. Let's play. Say zoo time when you're ready")
-        .renderTemplate(template);
+        .renderTemplate(template)
+        .hint('zoo time when you are ready');
       this.emit(':responseReady');
     
     // After correctly completing level 8, you are a champion
