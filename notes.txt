@@ -38,10 +38,9 @@ FEATURES
 READY_MODE and GUESS_MODE - cannot guess from READY_MODE
 say something when you poke an animal
 Change unhandled output
-Account for non-display devices (and the simulator) - do we have to?
+Account for non-display devices (and the simulator)
 
 ENHANCEMENTS
 diff song for each level? - now that we have different wait guess not sure if needed
-hint to say zoo time
 video on start?
 video on guess screen?

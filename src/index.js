@@ -88,7 +88,8 @@ const handlers = {
     
     this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Splashing_Around_edit.mp3' />Welcome to the Memory Zoo!  Can you remember all the animals you see?  Say zoo time when you're ready for level 1.")
       .listen("Come on. Let's play. Say zoo time when you're ready")
-      .renderTemplate(template);
+      .renderTemplate(template)
+      .hint('zoo time');
     this.emit(':responseReady');  
   },
   'ReadyIntent': function () {
@@ -100,7 +101,7 @@ const handlers = {
 
     this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
                  .listen("Which animals did you see?")
-                 .renderTemplate(template);
+                 .renderTemplate(template)
     this.emit(':responseReady');  
   },
   'GuessIntent': function () {
@@ -156,7 +157,7 @@ const handlers = {
 
       // At level 3, you need to swipe to see all the animals      
       if (gameLevel == 3) {
-        instructions = "You've made it to level 3. You may need to swipe to see all the animals.  Say zoo time when you're ready. "
+        instructions = "You've made it to level 3. You may need to swipe to see all the animals.  Wake your device and say zoo time when you're ready. "
       } else {
         instructions = `Say zoo time when you're ready for level ${gameLevel}`;        
       }
@@ -165,7 +166,7 @@ const handlers = {
                            <say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/> ${instructions}`)
         .listen("Come on. Let's play. Say zoo time when you're ready")
         .renderTemplate(template)
-        .hint('zoo time when you are ready');
+        .hint('zoo time');
       this.emit(':responseReady');
     
     // After correctly completing level 8, you are a champion
@@ -192,14 +193,14 @@ const handlers = {
       const builder = new Alexa.templateBuilders.BodyTemplate1Builder();
       const template = builder.setToken('bodyTemplate1')
                               .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/gameover.jpg'))
-                              .setTextContent(TextUtils.makeRichText(`<b>Great job! You reached level ${gameLevel}</b>`))
+                              .setTextContent(TextUtils.makeRichText(`<b><font size="5"> Thanks for playing Memory Zoo</font><br/>Great job! You reached level ${gameLevel}</b>`))
                               .setBackButtonBehavior('HIDDEN')                              
                               .build();
 
       this.response.speak(`<audio src='https://s3.amazonaws.com/memory-zoo/audio/Skip_With_My_Creole_Band_Sting_edit.mp3' />
                           <say-as interpret-as="interjection">aw man</say-as><break time="1s"/> Thanks for hanging out at the memory zoo. 
-                          Say Alexa play memory zoo to play again.`)
-        .renderTemplate(template);
+                          Wake your device and say play memory zoo to play again.`)
+                   .renderTemplate(template);
       this.emit(':responseReady');  
     }
   },
