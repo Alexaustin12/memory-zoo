@@ -41,6 +41,8 @@ Change unhandled output
 Account for non-display devices (and the simulator)
 
 ENHANCEMENTS
+dynamodb table to track number of games played, highest score, fastest time
 diff song for each level? - now that we have different wait guess not sure if needed
-video on start?
-video on guess screen?
+
+NOTES
+Video app finishes to a black screen - cannot be combined with display template

@@ -11,7 +11,7 @@ const TextUtils = require('alexa-sdk').utils.TextUtils;
 exports.handler = function(event, context, callback){
   const alexa = Alexa.handler(event, context, callback);
   alexa.appId = process.env.APP_ID;
-  alexa.registerHandlers(handlers);
+  alexa.registerHandlers(newSessionHandlers, guessModeHandlers, preGuessModeHandlers);
   alexa.execute()
 };
 
@@ -68,9 +68,15 @@ const createLevel = (level) => {
 
 const randSpeechCon = () => speechCons[Math.floor(Math.random() * speechCons.length)];
 
-// Request handlers
-const handlers = {
+const states = {
+  GUESSMODE: '_GUESSMODE', // User is trying to guess the animals
+  PREGUESSMODE: '_PREGUESSMODE'  // User needs to say zoo time
+};
+
+const newSessionHandlers = { 
   'LaunchRequest': function () {
+    console.log('this', this);
+    this.handler.state = states.PREGUESSMODE;
     startTime = new Date();
     gameLevel = this.attributes.level = 1;
     let levelObj = createLevel(gameLevel);
@@ -85,26 +91,23 @@ const handlers = {
                             .setListItems(listItems)
                             .setBackButtonBehavior('HIDDEN')
                             .build();
-    
+
     this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Splashing_Around_edit.mp3' />Welcome to the Memory Zoo!  Can you remember all the animals you see?  Say zoo time when you're ready for level 1.")
       .listen("Come on. Let's play. Say zoo time when you're ready")
       .renderTemplate(template)
       .hint('zoo time');
     this.emit(':responseReady');  
   },
-  'ReadyIntent': function () {
-    const builder = new Alexa.templateBuilders.BodyTemplate6Builder();
-    const template = builder.setToken('bodyTemplate6')
-                            .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Stripes2.jpg'))
-                            .setBackButtonBehavior('HIDDEN')                            
-                            .build();
+  'Unhandled': function () {
+    const speechOutput = "Say zoo time when you're ready";
+    const repromptSpeech = "Come on. Let's play. Say zoo time when you're ready";
+    this.emit(':ask', speechOutput, repromptSpeech);
+  }
+};
 
-    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
-                 .listen("Which animals did you see?")
-                 .renderTemplate(template)
-    this.emit(':responseReady');  
-  },
+const guessModeHandlers = Alexa.CreateStateHandler(states.GUESSMODE, {
   'GuessIntent': function () {
+    this.handler.state = states.PREGUESSMODE;    
     const intentObj = this.event.request.intent;
     console.log('intentObj.slots', intentObj.slots);
     const animalSlots = ['animal_one', 'animal_two', 'animal_three', 'animal_four', 'animal_five', 'animal_six', 'animal_seven',
@@ -205,7 +208,29 @@ const handlers = {
     }
   },
   'Unhandled': function () {
-    const speechOutput = 'This is unhandled';
-    this.emit(':tell', speechOutput);
+    const speechOutput = "Say zoo time when you're ready";
+    const repromptSpeech = "Come on. Let's play. Say zoo time when you're ready";
+    this.emit(':ask', speechOutput, repromptSpeech);
   }
-};
+});
+
+const preGuessModeHandlers = Alexa.CreateStateHandler(states.PREGUESSMODE, {
+  'ReadyIntent': function () {
+    this.handler.state = states.GUESSMODE;    
+    const builder = new Alexa.templateBuilders.BodyTemplate6Builder();
+    const template = builder.setToken('bodyTemplate6')
+                            .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Stripes2.jpg'))
+                            .setBackButtonBehavior('HIDDEN')                            
+                            .build();
+
+    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
+                 .listen("Which animals did you see?")
+                 .renderTemplate(template);
+    this.emit(':responseReady');  
+  },
+  'Unhandled': function () {
+    const speechOutput = "Which animals did you see?";
+    const repromptSpeech = "Tell me the animals you have seen";
+    this.emit(':ask', speechOutput, repromptSpeech);
+  }
+});
