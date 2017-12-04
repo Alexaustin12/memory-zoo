@@ -35,7 +35,6 @@ Standard Alexa is interupting! "ready" "zoo time"
 Letters cut off
 
 FEATURES
-READY_MODE and GUESS_MODE - cannot guess from READY_MODE
 say something when you poke an animal
 Change unhandled output
 Account for non-display devices (and the simulator)
@@ -46,3 +45,19 @@ diff song for each level? - now that we have different wait guess not sure if ne
 
 NOTES
 Video app finishes to a black screen - cannot be combined with display template
+
+TEST CASES
+Launch - generally as pass but sometimes doesn't work with "play memory zoo"
+PREGUESSMODE: zoo time - generally a pass but sometimes exits app and sometimes asks again
+PREGUESSMODE: right animal - simply ends session
+PREGUESSMODE: wrong animal - simply ends session
+GUESSMODE: right animal - pass
+GUESSMODE: wrong animal - pass
+LOSS SCREEN wake and say play memory zoo - pass
+GUESSMODE: swipe then say right animal (level 3) - pass
+GUESSMODE: swipe then say wrong animal (level 3) - pass
+GUESSMODE: be a champion -
+
+clicking animals multiple times alternates state 
+
+

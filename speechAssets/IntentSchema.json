@@ -87,6 +87,9 @@
         }
       ],
       "intent": "GuessIntent"
+    },
+    {
+    "intent": "CheatIntent"
     }
   ]
 }

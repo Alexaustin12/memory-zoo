@@ -3,7 +3,6 @@ A memory game Alexa Skill optimized for Echo Show
 */
 
 'use strict';
-
 const Alexa = require('alexa-sdk');
 const ImageUtils = require('alexa-sdk').utils.ImageUtils;
 const TextUtils = require('alexa-sdk').utils.TextUtils;
@@ -20,7 +19,7 @@ const animals = ['Bear', 'Elephant', 'Giraffe', 'Hippo', 'Monkey', 'Panda', 'Pen
 let levelAnimals = [];
 let levelArr = [];
 let lowercaseZoo = [];
-let gameLevel, startTime, endTime;
+let gameLevel, startTime, endTime, skillState;
 const speechCons = ['bada bing bada boom', 'bazinga', 'bingo', 'booya', 'bravo', 'cha ching',
                         'cowabunga', 'dynomite', 'giddy up', 'hurray', 'huzzah', 'kazaam', 'ooh la la',
                         'righto', 'ta da', 'vroom', 'wahoo', 'way to go', 'well done', 'woo hoo', 'wowza',
@@ -75,8 +74,9 @@ const states = {
 
 const newSessionHandlers = { 
   'LaunchRequest': function () {
-    console.log('this', this);
-    this.handler.state = states.PREGUESSMODE;
+    skillState = this.handler.state = this.attributes.STATE = "_PREGUESSMODE";
+    console.log('after Launch this.handler.state', this.handler.state);
+    console.log('after Launch this.attributes.STATE', this.attributes.STATE);    
     startTime = new Date();
     gameLevel = this.attributes.level = 1;
     let levelObj = createLevel(gameLevel);
@@ -99,15 +99,56 @@ const newSessionHandlers = {
     this.emit(':responseReady');  
   },
   'Unhandled': function () {
+    skillState = this.handler.state = this.attributes.STATE = "_PREGUESSMODE";
     const speechOutput = "Say zoo time when you're ready";
     const repromptSpeech = "Come on. Let's play. Say zoo time when you're ready";
     this.emit(':ask', speechOutput, repromptSpeech);
   }
 };
 
+const preGuessModeHandlers = Alexa.CreateStateHandler(states.PREGUESSMODE, {
+  'ReadyIntent': function () {
+    skillState = this.handler.state = this.attributes.STATE = "_GUESSMODE";
+    console.log('after zoo time this.handler.state', this.handler.state);
+    console.log('after zoo time this.attributes.STATE', this.attributes.STATE);  
+    const builder = new Alexa.templateBuilders.BodyTemplate6Builder();
+    const template = builder.setToken('bodyTemplate6')
+                            .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Stripes2.jpg'))
+                            .setBackButtonBehavior('HIDDEN')                            
+                            .build();
+
+    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
+                 .listen("Which animals did you see?")
+                 .renderTemplate(template);
+    this.emit(':responseReady');  
+  },
+  'CheatIntent': function () {
+    skillState = this.handler.state = this.attributes.STATE = "_GUESSMODE";
+    gameLevel = 8;
+    const builder = new Alexa.templateBuilders.BodyTemplate6Builder();
+    const template = builder.setToken('bodyTemplate6')
+                            .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Stripes2.jpg'))
+                            .setBackButtonBehavior('HIDDEN')                            
+                            .build();
+
+    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
+                 .listen("Which animals did you see?")
+                 .renderTemplate(template);
+    this.emit(':responseReady');  
+  },
+  'Unhandled': function () {
+    skillState = this.handler.state = this.attributes.STATE = "_GUESSMODE";
+    const speechOutput = "Which animals did you see?";
+    const repromptSpeech = "Tell me the animals you have seen";
+    this.emit(':ask', speechOutput, repromptSpeech);
+  }
+});
+
 const guessModeHandlers = Alexa.CreateStateHandler(states.GUESSMODE, {
   'GuessIntent': function () {
-    this.handler.state = states.PREGUESSMODE;    
+    skillState = this.handler.state = this.attributes.STATE = "_PREGUESSMODE";
+    console.log('after guess this.handler.state', this.handler.state);
+    console.log('after guess this.attributes.STATE', this.attributes.STATE);
     const intentObj = this.event.request.intent;
     console.log('intentObj.slots', intentObj.slots);
     const animalSlots = ['animal_one', 'animal_two', 'animal_three', 'animal_four', 'animal_five', 'animal_six', 'animal_seven',
@@ -208,29 +249,9 @@ const guessModeHandlers = Alexa.CreateStateHandler(states.GUESSMODE, {
     }
   },
   'Unhandled': function () {
+    skillState = this.handler.state = this.attributes.STATE = "_PREGUESSMODE";
     const speechOutput = "Say zoo time when you're ready";
     const repromptSpeech = "Come on. Let's play. Say zoo time when you're ready";
-    this.emit(':ask', speechOutput, repromptSpeech);
-  }
-});
-
-const preGuessModeHandlers = Alexa.CreateStateHandler(states.PREGUESSMODE, {
-  'ReadyIntent': function () {
-    this.handler.state = states.GUESSMODE;    
-    const builder = new Alexa.templateBuilders.BodyTemplate6Builder();
-    const template = builder.setToken('bodyTemplate6')
-                            .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Stripes2.jpg'))
-                            .setBackButtonBehavior('HIDDEN')                            
-                            .build();
-
-    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
-                 .listen("Which animals did you see?")
-                 .renderTemplate(template);
-    this.emit(':responseReady');  
-  },
-  'Unhandled': function () {
-    const speechOutput = "Which animals did you see?";
-    const repromptSpeech = "Tell me the animals you have seen";
     this.emit(':ask', speechOutput, repromptSpeech);
   }
 });
