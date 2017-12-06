@@ -35,9 +35,9 @@ Standard Alexa is interupting! "ready" "zoo time"
 Letters cut off
 
 FEATURES
-say something when you poke an animal
-Change unhandled output
 Account for non-display devices (and the simulator)
+Reduce levels to 6 (test w cheat AND w/o cheat)
+Remove GUESSMODE PREGUESSMODE
 
 ENHANCEMENTS
 dynamodb table to track number of games played, highest score, fastest time
@@ -47,17 +47,4 @@ NOTES
 Video app finishes to a black screen - cannot be combined with display template
 
 TEST CASES
-Launch - generally as pass but sometimes doesn't work with "play memory zoo"
-PREGUESSMODE: zoo time - generally a pass but sometimes exits app and sometimes asks again
-PREGUESSMODE: right animal - simply ends session
-PREGUESSMODE: wrong animal - simply ends session
-GUESSMODE: right animal - pass
-GUESSMODE: wrong animal - pass
-LOSS SCREEN wake and say play memory zoo - pass
-GUESSMODE: swipe then say right animal (level 3) - pass
-GUESSMODE: swipe then say wrong animal (level 3) - pass
-GUESSMODE: be a champion -
-
-clicking animals multiple times alternates state 
-
-
+See spreadsheet - needs retesting

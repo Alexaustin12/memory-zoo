@@ -19,7 +19,7 @@ const animals = ['Bear', 'Elephant', 'Giraffe', 'Hippo', 'Monkey', 'Panda', 'Pen
 let levelAnimals = [];
 let levelArr = [];
 let lowercaseZoo = [];
-let gameLevel, startTime, endTime, skillState;
+let gameLevel, startTime, endTime;
 const speechCons = ['bada bing bada boom', 'bazinga', 'bingo', 'booya', 'bravo', 'cha ching',
                         'cowabunga', 'dynomite', 'giddy up', 'hurray', 'huzzah', 'kazaam', 'ooh la la',
                         'righto', 'ta da', 'vroom', 'wahoo', 'way to go', 'well done', 'woo hoo', 'wowza',
@@ -74,9 +74,7 @@ const states = {
 
 const newSessionHandlers = { 
   'LaunchRequest': function () {
-    skillState = this.handler.state = this.attributes.STATE = "_PREGUESSMODE";
-    console.log('after Launch this.handler.state', this.handler.state);
-    console.log('after Launch this.attributes.STATE', this.attributes.STATE);    
+    this.handler.state = "_PREGUESSMODE";  
     startTime = new Date();
     gameLevel = this.attributes.level = 1;
     let levelObj = createLevel(gameLevel);
@@ -92,38 +90,30 @@ const newSessionHandlers = {
                             .setBackButtonBehavior('HIDDEN')
                             .build();
 
-    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Splashing_Around_edit.mp3' />Welcome to the Memory Zoo!  Can you remember all the animals you see?  Say zoo time when you're ready for level 1.")
-      .listen("Come on. Let's play. Say zoo time when you're ready")
+    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Splashing_Around_edit.mp3' />Welcome to the Memory Zoo!  Can you remember all the animals you see?  Say zoo time when you're ready for level 1." + this.handler.state)
+      .listen("Come on. Let's play. Say zoo time when you're ready" + this.handler.state)
       .renderTemplate(template)
       .hint('zoo time');
     this.emit(':responseReady');  
-  },
-  'Unhandled': function () {
-    skillState = this.handler.state = this.attributes.STATE = "_PREGUESSMODE";
-    const speechOutput = "Say zoo time when you're ready";
-    const repromptSpeech = "Come on. Let's play. Say zoo time when you're ready";
-    this.emit(':ask', speechOutput, repromptSpeech);
   }
 };
 
 const preGuessModeHandlers = Alexa.CreateStateHandler(states.PREGUESSMODE, {
   'ReadyIntent': function () {
-    skillState = this.handler.state = this.attributes.STATE = "_GUESSMODE";
-    console.log('after zoo time this.handler.state', this.handler.state);
-    console.log('after zoo time this.attributes.STATE', this.attributes.STATE);  
+    this.handler.state = "_GUESSMODE"; 
     const builder = new Alexa.templateBuilders.BodyTemplate6Builder();
     const template = builder.setToken('bodyTemplate6')
                             .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Stripes2.jpg'))
                             .setBackButtonBehavior('HIDDEN')                            
                             .build();
 
-    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
+    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen." + this.handler.state)
                  .listen("Which animals did you see?")
                  .renderTemplate(template);
     this.emit(':responseReady');  
   },
   'CheatIntent': function () {
-    skillState = this.handler.state = this.attributes.STATE = "_GUESSMODE";
+    this.handler.state = "_GUESSMODE";
     gameLevel = 8;
     const builder = new Alexa.templateBuilders.BodyTemplate6Builder();
     const template = builder.setToken('bodyTemplate6')
@@ -131,24 +121,22 @@ const preGuessModeHandlers = Alexa.CreateStateHandler(states.PREGUESSMODE, {
                             .setBackButtonBehavior('HIDDEN')                            
                             .build();
 
-    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
-                 .listen("Which animals did you see?")
+    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen." + this.handler.state)
+                 .listen("Which animals did you see?" + this.handler.state)
                  .renderTemplate(template);
     this.emit(':responseReady');  
   },
   'Unhandled': function () {
-    skillState = this.handler.state = this.attributes.STATE = "_GUESSMODE";
-    const speechOutput = "Which animals did you see?";
-    const repromptSpeech = "Tell me the animals you have seen";
+    this.handler.state = "_PREGUESSMODE";
+    const speechOutput = "Which animals did you see?" + this.handler.state;
+    const repromptSpeech = "Tell me the animals you have seen" + this.handler.state;
     this.emit(':ask', speechOutput, repromptSpeech);
   }
 });
 
 const guessModeHandlers = Alexa.CreateStateHandler(states.GUESSMODE, {
   'GuessIntent': function () {
-    skillState = this.handler.state = this.attributes.STATE = "_PREGUESSMODE";
-    console.log('after guess this.handler.state', this.handler.state);
-    console.log('after guess this.attributes.STATE', this.attributes.STATE);
+    this.handler.state = "_PREGUESSMODE";
     const intentObj = this.event.request.intent;
     console.log('intentObj.slots', intentObj.slots);
     const animalSlots = ['animal_one', 'animal_two', 'animal_three', 'animal_four', 'animal_five', 'animal_six', 'animal_seven',
@@ -207,8 +195,8 @@ const guessModeHandlers = Alexa.CreateStateHandler(states.GUESSMODE, {
       }
 
       this.response.speak(`<audio src='https://s3.amazonaws.com/memory-zoo/audio/Rollanddrop_Sting_edit.mp3' />
-                           <say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/> ${instructions}`)
-        .listen("Come on. Let's play. Say zoo time when you're ready")
+                           <say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/> ${instructions} ${this.handler.state}`)
+        .listen("Come on. Let's play. Say zoo time when you're ready" + this.handler.state)
         .renderTemplate(template)
         .hint('zoo time');
       this.emit(':responseReady');
@@ -228,7 +216,7 @@ const guessModeHandlers = Alexa.CreateStateHandler(states.GUESSMODE, {
                               .build();
 
       this.response.speak(`<say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/>
-                           <audio src='https://s3.amazonaws.com/memory-zoo/audio/Classique_edit.mp3' />`)
+                           <audio src='https://s3.amazonaws.com/memory-zoo/audio/Classique_edit.mp3' />${this.handler.state}`)
                    .renderTemplate(template);
       this.emit(':responseReady'); 
 
@@ -243,15 +231,15 @@ const guessModeHandlers = Alexa.CreateStateHandler(states.GUESSMODE, {
 
       this.response.speak(`<audio src='https://s3.amazonaws.com/memory-zoo/audio/Skip_With_My_Creole_Band_Sting_edit.mp3' />
                           <say-as interpret-as="interjection">aw man</say-as><break time="1s"/> Thanks for hanging out at the memory zoo. 
-                          Wake your device and say play memory zoo to play again.`)
+                          Wake your device and say play memory zoo to play again.${this.handler.state}`)
                    .renderTemplate(template);
       this.emit(':responseReady');  
     }
   },
   'Unhandled': function () {
-    skillState = this.handler.state = this.attributes.STATE = "_PREGUESSMODE";
-    const speechOutput = "Say zoo time when you're ready";
-    const repromptSpeech = "Come on. Let's play. Say zoo time when you're ready";
+    this.handler.state = "_GUESSMODE";
+    const speechOutput = "Say zoo time when you're ready" + this.handler.state;
+    const repromptSpeech = "Come on. Let's play. Say zoo time when you're ready" + this.handler.state;
     this.emit(':ask', speechOutput, repromptSpeech);
   }
 });
