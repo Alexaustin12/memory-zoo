@@ -36,10 +36,10 @@ Letters cut off
 
 FEATURES
 Account for non-display devices (and the simulator)
-Reduce levels to 6 (test w cheat AND w/o cheat)
 Remove GUESSMODE PREGUESSMODE
 
 ENHANCEMENTS
+states
 dynamodb table to track number of games played, highest score, fastest time
 diff song for each level? - now that we have different wait guess not sure if needed
 

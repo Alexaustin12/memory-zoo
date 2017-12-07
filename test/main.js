@@ -73,7 +73,7 @@ sts.assumeRole({
         //var event = require('./pigInput.json');
         //var event = require('./tigerInput.json');
         //var event = require('./giraffeElephantInput.json');
-        
+        //var event = require('./touchAnimal.json');
         lambda.handler(event, context());
     }
 });
