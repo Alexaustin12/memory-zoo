@@ -36,7 +36,6 @@ Letters cut off
 
 FEATURES
 Account for non-display devices (and the simulator)
-Remove GUESSMODE PREGUESSMODE
 
 ENHANCEMENTS
 states
