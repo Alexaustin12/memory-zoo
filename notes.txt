@@ -31,11 +31,10 @@ After seeing the animals, you must recite the name of each animal you saw in the
 If you are right, you will continue on to the next level.  If you are wrong, your trip ends.  Would you like to play?
 
 BUGS
-Standard Alexa is interupting! "ready" "zoo time"
+Standard Alexa is interupting! "play memory zoo", "ready", "zoo time"
 Letters cut off
 
 FEATURES
-Account for non-display devices (and the simulator)
 
 ENHANCEMENTS
 states
@@ -46,4 +45,4 @@ NOTES
 Video app finishes to a black screen - cannot be combined with display template
 
 TEST CASES
-See spreadsheet - needs retesting
+See spreadsheet
