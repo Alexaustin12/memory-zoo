@@ -65,6 +65,15 @@ const createLevel = (level) => {
   return levelObj;
 }
 
+const createAudioLevel = (levelAnimals) => {
+  let animalListSpeech = "";
+  let animal;
+  for (animal in levelAnimals) {
+    animalListSpeech += levelAnimals[animal] + ", "
+  }
+  return animalListSpeech;
+}
+
 const randSpeechCon = () => speechCons[Math.floor(Math.random() * speechCons.length)];
 
 const handlers = { 
@@ -83,37 +92,49 @@ const handlers = {
                             .setListItems(listItems)
                             .setBackButtonBehavior('HIDDEN')
                             .build();
+    const audioLevel = createAudioLevel(levelObj.levelAnimals);
+    const noDisplaySpeech = `<audio src='https://s3.amazonaws.com/memory-zoo/audio/Splashing_Around_edit.mp3' />Welcome to the Memory Zoo! Here is your first animal to remember: ${audioLevel}. Say zoo time when you're ready for level 1.`; 
+    const repromptSpeech = "Come on. Let's play. Say zoo time when you're ready";
 
     this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Splashing_Around_edit.mp3' />Welcome to the Memory Zoo!  Can you remember all the animals you see?  Say zoo time when you're ready for level 1.")
-                 .listen("Come on. Let's play. Say zoo time when you're ready")
+                 .listen(repromptSpeech)
                  .renderTemplate(template)
                  .hint('zoo time');
-    this.emit(':responseReady');
+    
+    if (this.event.context.System.device.supportedInterfaces.Display) {
+      this.emit(':responseReady');
+    } else {
+      this.emit(':ask', noDisplaySpeech, repromptSpeech);
+    }
   },
   'ReadyIntent': function () {
+    // When testing, gameLevel will be blank, this sets it
+    if (!gameLevel) {
+      gameLevel = this.attributes.level;
+    }
     const builder = new Alexa.templateBuilders.BodyTemplate6Builder();
     const template = builder.setToken('bodyTemplate6')
                             .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Stripes2.jpg'))
                             .setBackButtonBehavior('HIDDEN')                            
                             .build();
+    let speechOutput, repromptSpeech;
+    if (gameLevel == 1) {
+      speechOutput = "<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me what animal is in the zoo.";
+      repromptSpeech = "What animal is in the zoo?";
+    } else {
+      speechOutput = "<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals in the zoo.";
+      repromptSpeech = "Which animals are in the zoo?";
+    }
 
-    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
-                 .listen("Which animals did you see?")
+    this.response.speak(speechOutput)
+                 .listen(repromptSpeech)
                  .renderTemplate(template);
-    this.emit(':responseReady');  
-  },
-  'CheatIntent': function () {
-    gameLevel = 6;
-    const builder = new Alexa.templateBuilders.BodyTemplate6Builder();
-    const template = builder.setToken('bodyTemplate6')
-                            .setBackgroundImage(ImageUtils.makeImage('https://s3.amazonaws.com/memory-zoo/images/Stripes2.jpg'))
-                            .setBackButtonBehavior('HIDDEN')                            
-                            .build();
 
-    this.response.speak("<audio src='https://s3.amazonaws.com/memory-zoo/audio/Baila_Mi_Cumbia_edit.mp3' />Now tell me the animals you have seen.")
-                 .listen("Which animals did you see?")
-                 .renderTemplate(template);
-    this.emit(':responseReady');  
+    if (this.event.context.System.device.supportedInterfaces.Display) {
+      this.emit(':responseReady');
+    } else {
+      this.emit(':ask', speechOutput, repromptSpeech);
+    }
   },
   'GuessIntent': function () {
     const intentObj = this.event.request.intent;
@@ -163,24 +184,34 @@ const handlers = {
                               .setListItems(listItems)
                               .setBackButtonBehavior('HIDDEN')                              
                               .build();
-      
+      const audioLevel = createAudioLevel(levelObj.levelAnimals);                              
       let instructions;
 
       // At level 3, you need to swipe to see all the animals      
-      if (gameLevel == 3) {
+      if (gameLevel == 3 && this.event.context.System.device.supportedInterfaces.Display) {
         instructions = "You've made it to level 3. You may need to swipe to see all the animals.  Wake your device and say zoo time when you're ready. "
-      } else {
+      } else if (gameLevel != 3 && this.event.context.System.device.supportedInterfaces.Display) {
         instructions = `Say zoo time when you're ready for level ${gameLevel}`;        
+      } else {
+        instructions = `Now the zoo has ${gameLevel} animals. The animals are: ${audioLevel}. Say zoo time when you're ready for level ${gameLevel}`;
+      }
+      
+      const speechOutput = `<audio src='https://s3.amazonaws.com/memory-zoo/audio/Rollanddrop_Sting_edit.mp3' />
+                            <say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/> ${instructions}`;
+      const repromptSpeech = "Come on. Let's play. Say zoo time when you're ready";
+
+      this.response.speak(speechOutput)
+                   .listen(repromptSpeech)
+                   .renderTemplate(template)
+                   .hint('zoo time');
+      
+      if (this.event.context.System.device.supportedInterfaces.Display) {
+        this.emit(':responseReady');
+      } else {
+        this.emit(':ask', speechOutput, repromptSpeech);
       }
 
-      this.response.speak(`<audio src='https://s3.amazonaws.com/memory-zoo/audio/Rollanddrop_Sting_edit.mp3' />
-                           <say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/> ${instructions}`)
-        .listen("Come on. Let's play. Say zoo time when you're ready")
-        .renderTemplate(template)
-        .hint('zoo time');
-      this.emit(':responseReady');
-    
-    // After correctly completing level 8, you are a champion
+    // After correctly completing level 6, you are a champion
     } else if (userCorrect && gameLevel == 6) {
       endTime = new Date();
       let gameTime = endTime - startTime;
@@ -193,12 +224,18 @@ const handlers = {
                               .setTextContent(TextUtils.makeRichText(`<b>You are a champion!<br/>Memory Zoo completed in ${gameMin} minutes and ${gameSec} seconds</b>`))
                               .setBackButtonBehavior('HIDDEN')                              
                               .build();
-
+      const noDisplaySpeech = `<say-as interpret-as="interjection">${randSpeechCon()}</say-as>. Congratulations, you are a champion! 
+                              You completed Memory Zoo in ${gameMin} minutes and ${gameSec} seconds
+                              <audio src='https://s3.amazonaws.com/memory-zoo/audio/Classique_edit.mp3' />`;
       this.response.speak(`<say-as interpret-as="interjection">${randSpeechCon()}</say-as><break time="1s"/>
                            <audio src='https://s3.amazonaws.com/memory-zoo/audio/Classique_edit.mp3' />`)
                    .renderTemplate(template);
-      this.emit(':responseReady'); 
 
+      if (this.event.context.System.device.supportedInterfaces.Display) {
+        this.emit(':responseReady');
+      } else {
+        this.emit(':tell', noDisplaySpeech);
+      }
     // Display and output when user is incorrect
     } else {
       const builder = new Alexa.templateBuilders.BodyTemplate1Builder();
@@ -207,17 +244,21 @@ const handlers = {
                               .setTextContent(TextUtils.makeRichText(`<b><font size="5"> Thanks for playing Memory Zoo</font><br/>Great job! You reached level ${gameLevel}</b>`))
                               .setBackButtonBehavior('HIDDEN')                              
                               .build();
-
-      this.response.speak(`<audio src='https://s3.amazonaws.com/memory-zoo/audio/Skip_With_My_Creole_Band_Sting_edit.mp3' />
-                          <say-as interpret-as="interjection">aw man</say-as><break time="1s"/> Thanks for hanging out at the memory zoo. 
-                          Wake your device and say play memory zoo to play again.`)
+      const speechOutput = `<audio src='https://s3.amazonaws.com/memory-zoo/audio/Skip_With_My_Creole_Band_Sting_edit.mp3' />
+                            <say-as interpret-as="interjection">aw man</say-as><break time="1s"/> Thanks for hanging out at the memory zoo. 
+                            Wake your device and say play memory zoo to play again.`;
+      this.response.speak(speechOutput)
                    .renderTemplate(template);
-      this.emit(':responseReady');  
+      if (this.event.context.System.device.supportedInterfaces.Display) {
+        this.emit(':responseReady');
+      } else {
+        this.emit(':tell', speechOutput);
+      }
     }
   },
   'Unhandled': function () {
-    this.response.speak("Whoops! I don't know how to respond to that. Please try again")
-                 .listen("Please try again");
+    this.response.speak("There's no time to pet the animals! We have a game to play!")
+                 .listen("Let's get back to the game!");
     this.emit(':responseReady');
   },
 }
