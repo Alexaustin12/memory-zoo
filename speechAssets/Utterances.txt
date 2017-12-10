@@ -11,4 +11,3 @@ ReadyIntent I'm ready
 ReadyIntent Let's start
 ReadyIntent zoo
 ReadyIntent zoo time
-CheatIntent cheat

@@ -69,11 +69,17 @@ sts.assumeRole({
         };        
         var lambda = require('../src/index.js');
 
-        var event = require('./launchInput.json');
+        //var event = require('./launchInput.json');
         //var event = require('./pigInput.json');
         //var event = require('./tigerInput.json');
         //var event = require('./giraffeElephantInput.json');
+        var event = require('./zooTime.json');
         //var event = require('./touchAnimal.json');
+        //var event = require('./launchInputAudio.json');
+        //var event = require('./pigInputAudio.json');
+        //var event = require('./tigerInputAudio.json');
+        //var event = require('./giraffeElephantInputAudio.json');
+        //var event = require('./zooTimeAudio.json');
         lambda.handler(event, context());
     }
 });
