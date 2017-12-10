@@ -49,6 +49,9 @@
       "intent": "AMAZON.StartOverIntent"
     },
     {
+      "intent": "StartIntent"
+    },
+    {
       "intent": "ReadyIntent"
     },
     {

@@ -256,6 +256,21 @@ const handlers = {
       }
     }
   },
+  'AMAZON.HelpIntent': function () {
+    this.response.speak("Say enter the zoo to begin. You are tasked with memorizing the animals you encounter. To complete the zoo, repeat back all the animals in the correct order.")
+                 .listen("Say enter the zoo to begin.");
+    this.emit(':responseReady');
+  },
+  'AMAZON.CancelIntent': function () {
+    this.response.speak("Thanks for visiting the memory zoo. Come back soon!")
+    this.emit(':responseReady');
+  },
+  'AMAZON.StopIntent': function () {
+    this.emit('AMAZON.CancelIntent');
+  },
+  'StartIntent': function () {
+    this.emit('LaunchRequest');
+  },
   'Unhandled': function () {
     this.response.speak("There's no time to pet the animals! We have a game to play!")
                  .listen("Let's get back to the game!");
