@@ -246,7 +246,7 @@ const handlers = {
                               .build();
       const speechOutput = `<audio src='https://s3.amazonaws.com/memory-zoo/audio/Skip_With_My_Creole_Band_Sting_edit.mp3' />
                             <say-as interpret-as="interjection">aw man</say-as><break time="1s"/> Thanks for hanging out at the memory zoo. 
-                            Wake your device and say play memory zoo to play again.`;
+                            Wake your device and say open memory zoo to play again.`;
       this.response.speak(speechOutput)
                    .renderTemplate(template);
       if (this.event.context.System.device.supportedInterfaces.Display) {
