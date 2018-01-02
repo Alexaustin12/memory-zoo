@@ -1,0 +1,151 @@
+{
+	"version": "1.0",
+	"session": {
+		"new": false,
+		"sessionId": "amzn1.echo-api.session.c4f56077-da40-4a04-b0f0-27233c9e37cd",
+		"application": {
+			"applicationId": "amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62"
+		},
+		"attributes": {
+			"level": 1,
+			"zoo": [
+				"Bear",
+				"Panda",
+				"Tiger"
+			]
+		},
+		"user": {
+			"userId": "amzn1.ask.account.AFPGBDVAVDU6F6YBDMXUNXQTAVXPVDDF74MH7KAFUYYSUWYSYMBBT53Y7JJ7B2ANAZDEFUVF47U4ERP56LU4HQ73BSM224GSAVUQIFFPOFLD3PE2KKTADILTU2ME4SWSJRZ64VV7K2IDFP4EQPGD6L4LKHSDL5VYRNOENI72CHS4DGKQLXFE52I2JPOJAYQFKIF262BE23UYCVY"
+		}
+	},
+	"context": {
+		"AudioPlayer": {
+			"playerActivity": "IDLE"
+		},
+		"Display": {
+			"token": "listTemplate"
+		},
+		"System": {
+			"application": {
+				"applicationId": "amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62"
+			},
+			"user": {
+				"userId": "amzn1.ask.account.AFPGBDVAVDU6F6YBDMXUNXQTAVXPVDDF74MH7KAFUYYSUWYSYMBBT53Y7JJ7B2ANAZDEFUVF47U4ERP56LU4HQ73BSM224GSAVUQIFFPOFLD3PE2KKTADILTU2ME4SWSJRZ64VV7K2IDFP4EQPGD6L4LKHSDL5VYRNOENI72CHS4DGKQLXFE52I2JPOJAYQFKIF262BE23UYCVY"
+			},
+			"device": {
+				"deviceId": "amzn1.ask.device.AGNYVEKV2L556EOGE4SQNE2P6RBDEQWJSII3LYI7RBJBGN43OMTDCRNV52HGBZCZMSY6SXVQML4YUVIRCVZGYJOLLBJYEECA4MBVAJAMNDQVKS6YLADEGITV7RXU2S5MDJQ7BOEDQTK426XOIYVTDNA2Y3IQ",
+				"supportedInterfaces": {
+					"AudioPlayer": {},
+					"Display": {
+						"templateVersion": "1.0",
+						"markupVersion": "1.0"
+					}
+				}
+			},
+			"apiEndpoint": "https://api.amazonalexa.com",
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjM5YTA1NTFiLWUxN2ItNDQzZS1iMDRmLWRmOTI4MDVmMGE2MiIsImV4cCI6MTUxNDUwNDA3MCwiaWF0IjoxNTE0NTAwNDcwLCJuYmYiOjE1MTQ1MDA0NzAsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUdOWVZFS1YyTDU1NkVPR0U0U1FORTJQNlJCREVRV0pTSUkzTFlJN1JCSkJHTjQzT01URENSTlY1MkhHQlpDWk1TWTZTWFZRTUw0WVVWSVJDVlpHWUpPTExCSllFRUNBNE1CVkFKQU1ORFFWS1M2WUxBREVHSVRWN1JYVTJTNU1ESlE3Qk9FRFFUSzQyNlhPSVlWVEROQTJZM0lRIiwidXNlcklkIjoiYW16bjEuYXNrLmFjY291bnQuQUZQR0JEVkFWRFU2RjZZQkRNWFVOWFFUQVZYUFZEREY3NE1IN0tBRlVZWVNVV1lTWU1CQlQ1M1k3Sko3QjJBTkFaREVGVVZGNDdVNEVSUDU2TFU0SFE3M0JTTTIyNEdTQVZVUUlGRlBPRkxEM1BFMktLVEFESUxUVTJNRTRTV1NKUlo2NFZWN0sySURGUDRFUVBHRDZMNExLSFNETDVWWVJOT0VOSTcyQ0hTNERHS1FMWEZFNTJJMkpQT0pBWVFGS0lGMjYyQkUyM1VZQ1ZZIn19.FdzlCJevXufXlpaonCnzeDN2CixHtVGd3EishmBfl7pzo-gHyxQ9z_DDdvj33TjP-bgtvlQ-maZBkpSEnri15ls58AiC5iDMKxYG9RtfB_ugUEZQqAaDyOEyOftitnW_Z85HhOKkTt589sIKAeK5Lfh5DAJB3frTJpDHjNM_doMELBe3f-InTKOg9yaqf92_c9EGYLvaShbGOgOWvEpFgQGCbqqUcydRI_FSrfBhQ2K_cx9EdxqCORKZ52g4V8Y_PzirKRIcxSHQbhXCQdpgPPegnPbh678U3TVUfDco_cJaai009TOD9EpViP22qSsjumc_5LVuzBG-lqw8Z7jOyw"
+		}
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "amzn1.echo-api.request.963973c8-4d24-4bae-a92a-ff66c5d58e52",
+		"timestamp": "2017-12-28T22:34:30Z",
+		"locale": "en-US",
+		"intent": {
+			"name": "GuessIntent",
+			"confirmationStatus": "NONE",
+			"slots": {
+				"animal_seven": {
+					"name": "animal_seven",
+					"confirmationStatus": "NONE"
+				},
+				"animal_one": {
+					"name": "animal_one",
+					"value": "bear",
+					"resolutions": {
+						"resolutionsPerAuthority": [
+							{
+								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62.LIST_OF_ANIMALS",
+								"status": {
+									"code": "ER_SUCCESS_MATCH"
+								},
+								"values": [
+									{
+										"value": {
+											"name": "bear",
+											"id": "893b56e3cfe153fb770a120b83bac20c"
+										}
+									}
+								]
+							}
+						]
+					},
+					"confirmationStatus": "NONE"
+				},
+				"animal_three": {
+					"name": "animal_three",
+					"value": "and",
+					"confirmationStatus": "NONE"
+				},
+				"animal_four": {
+					"name": "animal_four",
+					"value": "tiger",
+					"resolutions": {
+						"resolutionsPerAuthority": [
+							{
+								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62.LIST_OF_ANIMALS",
+								"status": {
+									"code": "ER_SUCCESS_MATCH"
+								},
+								"values": [
+									{
+										"value": {
+											"name": "tiger",
+											"id": "43b90920409618f188bfc6923f16b9fa"
+										}
+									}
+								]
+							}
+						]
+					},
+					"confirmationStatus": "NONE"
+				},
+				"animal_two": {
+					"name": "animal_two",
+					"value": "panda",
+					"resolutions": {
+						"resolutionsPerAuthority": [
+							{
+								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62.LIST_OF_ANIMALS",
+								"status": {
+									"code": "ER_SUCCESS_MATCH"
+								},
+								"values": [
+									{
+										"value": {
+											"name": "panda",
+											"id": "ce61649168c4550c2f7acab92354dc6e"
+										}
+									}
+								]
+							}
+						]
+					},
+					"confirmationStatus": "NONE"
+				},
+				"animal_eight": {
+					"name": "animal_eight",
+					"confirmationStatus": "NONE"
+				},
+				"animal_six": {
+					"name": "animal_six",
+					"confirmationStatus": "NONE"
+				},
+				"animal_five": {
+					"name": "animal_five",
+					"confirmationStatus": "NONE"
+				}
+			}
+		}
+	}
+}

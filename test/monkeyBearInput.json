@@ -1,0 +1,130 @@
+{
+	"version": "1.0",
+	"session": {
+		"new": false,
+		"sessionId": "amzn1.echo-api.session.abeaf4d2-1d0b-4c95-bda8-4da33b8d967f",
+		"application": {
+			"applicationId": "amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62"
+		},
+		"attributes": {
+			"level": 1,
+			"zoo": [
+				"Monkey",
+				"Bear"
+			]
+		},
+		"user": {
+			"userId": "amzn1.ask.account.AFPGBDVAVDU6F6YBDMXUNXQTAVXPVDDF74MH7KAFUYYSUWYSYMBBT53Y7JJ7B2ANAZDEFUVF47U4ERP56LU4HQ73BSM224GSAVUQIFFPOFLD3PE2KKTADILTU2ME4SWSJRZ64VV7K2IDFP4EQPGD6L4LKHSDL5VYRNOENI72CHS4DGKQLXFE52I2JPOJAYQFKIF262BE23UYCVY"
+		}
+	},
+	"context": {
+		"AudioPlayer": {
+			"playerActivity": "IDLE"
+		},
+		"Display": {
+			"token": "listTemplate"
+		},
+		"System": {
+			"application": {
+				"applicationId": "amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62"
+			},
+			"user": {
+				"userId": "amzn1.ask.account.AFPGBDVAVDU6F6YBDMXUNXQTAVXPVDDF74MH7KAFUYYSUWYSYMBBT53Y7JJ7B2ANAZDEFUVF47U4ERP56LU4HQ73BSM224GSAVUQIFFPOFLD3PE2KKTADILTU2ME4SWSJRZ64VV7K2IDFP4EQPGD6L4LKHSDL5VYRNOENI72CHS4DGKQLXFE52I2JPOJAYQFKIF262BE23UYCVY"
+			},
+			"device": {
+				"deviceId": "amzn1.ask.device.AGNYVEKV2L556EOGE4SQNE2P6RBDEQWJSII3LYI7RBJBGN43OMTDCRNV52HGBZCZMSY6SXVQML4YUVIRCVZGYJOLLBJYEECA4MBVAJAMNDQVKS6YLADEGITV7RXU2S5MDJQ7BOEDQTK426XOIYVTDNA2Y3IQ",
+				"supportedInterfaces": {
+					"AudioPlayer": {},
+					"Display": {
+						"templateVersion": "1.0",
+						"markupVersion": "1.0"
+					}
+				}
+			},
+			"apiEndpoint": "https://api.amazonalexa.com",
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjM5YTA1NTFiLWUxN2ItNDQzZS1iMDRmLWRmOTI4MDVmMGE2MiIsImV4cCI6MTUxNDUwMDU5MywiaWF0IjoxNTE0NDk2OTkzLCJuYmYiOjE1MTQ0OTY5OTMsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUdOWVZFS1YyTDU1NkVPR0U0U1FORTJQNlJCREVRV0pTSUkzTFlJN1JCSkJHTjQzT01URENSTlY1MkhHQlpDWk1TWTZTWFZRTUw0WVVWSVJDVlpHWUpPTExCSllFRUNBNE1CVkFKQU1ORFFWS1M2WUxBREVHSVRWN1JYVTJTNU1ESlE3Qk9FRFFUSzQyNlhPSVlWVEROQTJZM0lRIiwidXNlcklkIjoiYW16bjEuYXNrLmFjY291bnQuQUZQR0JEVkFWRFU2RjZZQkRNWFVOWFFUQVZYUFZEREY3NE1IN0tBRlVZWVNVV1lTWU1CQlQ1M1k3Sko3QjJBTkFaREVGVVZGNDdVNEVSUDU2TFU0SFE3M0JTTTIyNEdTQVZVUUlGRlBPRkxEM1BFMktLVEFESUxUVTJNRTRTV1NKUlo2NFZWN0sySURGUDRFUVBHRDZMNExLSFNETDVWWVJOT0VOSTcyQ0hTNERHS1FMWEZFNTJJMkpQT0pBWVFGS0lGMjYyQkUyM1VZQ1ZZIn19.kZ8jWU2mpK7ur8z1STnBqJY6RxBhI7WzOsDGqlufpX4ZqvbqACvLBKqqrTo0h0U2Y9C4MNQKUXswAbztYabl-F5A2ziDVfXGH4w0p9m-6X1lOpulXL8bU_kJ3EaAEeo8uClJkh1Kw4MI_QpfqWKDtlVlkb2DCeQHaC6zLLMzlUNWGR-PtxXZnKv1emDXVb5nHZD3zvUfxmTB7UBq4nyJG3PvzXGC_9dGglHHNFQXcIenzXcbPhvO5SuJFg55AqbZnHIZh-_-eBVJV7W45ttM8mU4z6-pLqT-9k6S8V53mudd9PDu5kuQcOGtzrMktYV9w-BWoNvl8qpaxRyNAsIzjQ"
+		}
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "amzn1.echo-api.request.191e118c-195b-4f0b-bcc7-5127db9e18f1",
+		"timestamp": "2017-12-28T21:36:33Z",
+		"locale": "en-US",
+		"intent": {
+			"name": "GuessIntent",
+			"confirmationStatus": "NONE",
+			"slots": {
+				"animal_seven": {
+					"name": "animal_seven",
+					"confirmationStatus": "NONE"
+				},
+				"animal_one": {
+					"name": "animal_one",
+					"value": "monkey",
+					"resolutions": {
+						"resolutionsPerAuthority": [
+							{
+								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62.LIST_OF_ANIMALS",
+								"status": {
+									"code": "ER_SUCCESS_MATCH"
+								},
+								"values": [
+									{
+										"value": {
+											"name": "monkey",
+											"id": "d0763edaa9d9bd2a9516280e9044d885"
+										}
+									}
+								]
+							}
+						]
+					},
+					"confirmationStatus": "NONE"
+				},
+				"animal_three": {
+					"name": "animal_three",
+					"confirmationStatus": "NONE"
+				},
+				"animal_four": {
+					"name": "animal_four",
+					"confirmationStatus": "NONE"
+				},
+				"animal_two": {
+					"name": "animal_two",
+					"value": "bear",
+					"resolutions": {
+						"resolutionsPerAuthority": [
+							{
+								"authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62.LIST_OF_ANIMALS",
+								"status": {
+									"code": "ER_SUCCESS_MATCH"
+								},
+								"values": [
+									{
+										"value": {
+											"name": "bear",
+											"id": "893b56e3cfe153fb770a120b83bac20c"
+										}
+									}
+								]
+							}
+						]
+					},
+					"confirmationStatus": "NONE"
+				},
+				"animal_eight": {
+					"name": "animal_eight",
+					"confirmationStatus": "NONE"
+				},
+				"animal_six": {
+					"name": "animal_six",
+					"confirmationStatus": "NONE"
+				},
+				"animal_five": {
+					"name": "animal_five",
+					"confirmationStatus": "NONE"
+				}
+			}
+		}
+	}
+}

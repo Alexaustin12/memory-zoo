@@ -1,0 +1,58 @@
+{
+  "session": {
+    "new": true,
+    "sessionId": "SessionId.8ba9f789-d7a2-471c-87ee-cac07103eb86",
+    "application": {
+      "applicationId": "amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62"
+    },
+    "attributes": {"level": "2", "zoo": ["Giraffe", "Elephant"]},
+    "user": {
+      "userId": "amzn1.ask.account.AFPGBDVAVDU6F6YBDMXUNXQTAVXPVDDF74MH7KAFUYYSUWYSYMBBT53Y7JJ7B2ANAZDEFUVF47U4ERP56LU4HQ73BSM224GSAVUQIFFPOFLD3PE2KKTADILTU2ME4SWSJRZ64VV7K2IDFP4EQPGD6L4LKHSDL5VYRNOENI72CHS4DGKQLXFE52I2JPOJAYQFKIF262BE23UYCVY"
+    }
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.6b4ff739-7457-4bf8-abaf-7b1781c09487",
+    "intent": {
+      "name": "GuessIntent",
+      "slots": {
+        "animal_one": {
+          "name": "animal_one",
+          "value": "giraffe"
+        },
+        "animal_two": {
+          "name": "animal_two",
+          "value": "and"
+        },
+        "animal_three": {
+          "name": "animal_three",
+          "value": "elephant"
+        }
+      }
+    },
+    "locale": "en-US",
+    "timestamp": "2017-11-12T19:22:43Z"
+  },
+  "context": {
+    "AudioPlayer": {
+      "playerActivity": "IDLE"
+    },
+    "System": {
+      "application": {
+        "applicationId": "amzn1.ask.skill.39a0551b-e17b-443e-b04f-df92805f0a62"
+      },
+      "user": {
+        "userId": "amzn1.ask.account.AFPGBDVAVDU6F6YBDMXUNXQTAVXPVDDF74MH7KAFUYYSUWYSYMBBT53Y7JJ7B2ANAZDEFUVF47U4ERP56LU4HQ73BSM224GSAVUQIFFPOFLD3PE2KKTADILTU2ME4SWSJRZ64VV7K2IDFP4EQPGD6L4LKHSDL5VYRNOENI72CHS4DGKQLXFE52I2JPOJAYQFKIF262BE23UYCVY"
+      },
+      "device": {
+        "supportedInterfaces": {
+          "Display": {
+            "templateVersion": "1",
+            "markupVersion": "1"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

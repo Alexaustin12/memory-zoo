@@ -4,11 +4,27 @@ GuessIntent {animal_one} {animal_two} {animal_three}
 GuessIntent {animal_one} {animal_two} {animal_three} {animal_four}
 GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five}
 GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five} {animal_six}
-GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five} {animal_six} {animal_seven}
-GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five} {animal_six} {animal_seven} {animal_eight}
+GuessIntent {animal_one}
+GuessIntent {animal_one} and {animal_two}
+GuessIntent {animal_one} {animal_two} and {animal_three}
+GuessIntent {animal_one} {animal_two} {animal_three} and {animal_four}
+GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} and {animal_five}
+GuessIntent {animal_one} {animal_two} {animal_three} {animal_four} {animal_five} and {animal_six}
+GuessIntent a {animal_one}
+GuessIntent an {animal_one}
 ReadyIntent ready
 ReadyIntent I'm ready
 ReadyIntent Let's start
 ReadyIntent zoo
 ReadyIntent zoo time
+ReadyIntent zoo tine
+ReadyIntent zoo type
+ReadyIntent sue time
+ReadyIntent woo time
+ReadyIntent two time
+ReadyIntent too time
+ReadyIntent to time
+ReadyIntent time
+ReadyIntent play zoo time
+ReadyIntent zoo tie
 StartIntent enter the zoo

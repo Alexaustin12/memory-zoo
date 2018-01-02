@@ -15,7 +15,9 @@ exports.handler = function(event, context, callback){
 };
 
 // Module vars
-const animals = ['Bear', 'Elephant', 'Giraffe', 'Hippo', 'Monkey', 'Panda', 'Penguin', 'Tiger', 'Zebra'];
+// Removed Panda and Zebra
+const animals = ['Bear', 'Elephant', 'Giraffe', 'Hippo', 'Monkey', 'Penguin', 'Tiger'];
+const lowercaseAnimals = animals.map(x => x.toLowerCase());
 let levelAnimals = [];
 let levelArr = [];
 let lowercaseZoo = [];
@@ -83,7 +85,7 @@ const handlers = {
     let levelObj = createLevel(gameLevel);
     let listItems = levelObj.levelArr;
     this.attributes.zoo = levelObj.levelAnimals;
-    lowercaseZoo = this.attributes.zoo.map(x => x.toLowerCase());    
+    lowercaseZoo = this.attributes.zoo.map(x => x.toLowerCase());
     const builder = new Alexa.templateBuilders.ListTemplate2Builder();    
 
     const template = builder.setTitle('Memory Zoo')
@@ -152,15 +154,25 @@ const handlers = {
       gameLevel = this.attributes.level;
     }
 
-    let key;
-    for (key in lowercaseZoo) {
-      userGuess.push(intentObj.slots[animalSlots[key]].value);
+    // Get the user input from the slots and put into an array
+    for (let key in intentObj.slots) {
+      userGuess.push(intentObj.slots[key].value);
+    }
+    // Remove slot values that are not animals
+    for (let i=0; i<userGuess.length; i++) {
+      if (lowercaseAnimals.indexOf(userGuess[i]) == -1) {
+        console.log('i', i);
+        console.log('userGuess[i]', userGuess[i]);
+        console.log('pre userGuess', userGuess);
+        userGuess.splice(i, 1);
+        console.log('post userGuess', userGuess);
+        i--;
+      }
     }
     let userCorrect = false;
-    let i;
-    for (i in lowercaseZoo) {
+    for (let i in lowercaseZoo) {
       userCorrect = true;
-      if (userGuess[i] != lowercaseZoo[i]) {
+      if (lowercaseZoo.indexOf(userGuess[i]) == -1) {
           userCorrect = false;
           break;
       }
