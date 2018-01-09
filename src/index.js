@@ -16,7 +16,7 @@ exports.handler = function(event, context, callback){
 
 // Module vars
 // Removed Panda and Zebra
-const animals = ['Bear', 'Elephant', 'Giraffe', 'Hippo', 'Monkey', 'Penguin', 'Tiger'];
+const animals = ['Bear', 'Elephant', 'Giraffe', 'Hippo', 'Monkey', 'Penguin', 'Tiger', 'Zebra'];
 const lowercaseAnimals = animals.map(x => x.toLowerCase());
 let levelAnimals = [];
 let levelArr = [];
